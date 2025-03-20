@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-namespace RogueLite
+namespace Engine
 {
 	class GameObject
 	{

@@ -4,7 +4,7 @@
 #include "GameObject.h"
 #include "Sprite.h"
 
-namespace RogueLite
+namespace Engine
 {
 	GameObject::GameObject(const std::string& texture, const sf::IntRect& rectInTexture, const sf::Vector2f& position, int desiredWidth, int desiredHeight)
 		: startPosition(position)

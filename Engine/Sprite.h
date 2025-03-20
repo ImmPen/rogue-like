@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-namespace RogueLite
+namespace Engine
 {
 	void InitSprite(sf::Sprite& sprite, float desiredWidth, float desiredHeight, const sf::Texture& texture);
 	void SetSpriteSize(sf::Sprite& sprite, float desiredWidth, float desiredHeight);
