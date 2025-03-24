@@ -1,25 +1,35 @@
 #include "pch.h"
-#include <assert.h>
-#include <string>
 #include "GameObject.h"
-#include "Sprite.h"
 
 namespace Engine
 {
-	GameObject::GameObject(const std::string& texture, const sf::IntRect& rectInTexture, const sf::Vector2f& position, int desiredWidth, int desiredHeight)
-		: startPosition(position)
+	GameObject::GameObject()
 	{
-		assert(this->texture.loadFromFile(texture, rectInTexture));
+		AddComponent<TransformComponent>();
+	}
 
-		InitSprite(this->sprite, desiredWidth, desiredHeight, this->texture);
-		this->sprite.setPosition(position);
-	}
-	void GameObject::Draw(sf::RenderWindow& window)
+	GameObject::~GameObject()
 	{
-		window.draw(this->sprite);
+		for (auto component : components)
+		{
+			delete component;
+		}
+		components.clear();
 	}
-	void GameObject::Restart()
+
+	void GameObject::Update(float deltaTime)
 	{
-		this->sprite.setPosition(startPosition);
+		for (auto& component : components)
+		{
+			component->Update(deltaTime);
+		}
+	}
+
+	void GameObject::Render()
+	{
+		for (auto& component : components)
+		{
+			component->Render();
+		}
 	}
 }

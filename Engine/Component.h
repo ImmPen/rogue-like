@@ -14,6 +14,6 @@ namespace Engine
 
 		GameObject* GetGameObject();
 	protected:
-		GameObject* gameObject
+		GameObject* gameObject;
 	};
 }
