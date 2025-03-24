@@ -25,6 +25,6 @@ namespace Engine
 		std::vector<GameObject*> gameObjects = {};
 		std::vector<GameObject*> markedToDestroyGameObjects = {};
 
-		void DestroyGameObjectImmedeately();
+		void DestroyGameObjectImmedeately(GameObject* gameObject);
 	};
 }
