@@ -1,18 +1,21 @@
-#ifndef ENGINE_H
-#define ENGINE_H
+#pragma once
 
-#ifdef ENGINE_EXPORTS
-#define ENGINE_API __declspec(dllexport)
-#else
-#define ENGINE_API __declspec(dllimport)
-#endif // ENGINE_EXPORTS
+#include "SFML/Graphics.hpp"
 
-class ENGINE_API Engine
+namespace Engine
 {
-public:
-	Engine();
-	void Initialize();
-	void Run();
-};
+	class Engine
+	{
+	public:
+		Engine(const Engine& app) = delete;
+		Engine& operator= (const Engine&) = delete;
 
-#endif // !ENGINE_H
+		static Engine* Instance();
+
+		void Run();
+
+	private:
+		Engine();
+		~Engine() = default;
+	};
+}

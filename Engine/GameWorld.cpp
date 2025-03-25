@@ -65,7 +65,7 @@ namespace Engine
 			std::remove_if(gameObjects.begin(), gameObjects.end(),
 				[gameObject](auto obj)
 				{
-					retirn obj == gameObject;
+					return obj == gameObject;
 				}),
 				gameObjects.end());
 		markedToDestroyGameObjects.erase(

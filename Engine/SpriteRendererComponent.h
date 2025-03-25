@@ -8,6 +8,7 @@ namespace Engine
 {
 	class SpriteRendererComponent : public Component
 	{
+	public:
 		SpriteRendererComponent(GameObject* gameObject);
 		~SpriteRendererComponent();
 

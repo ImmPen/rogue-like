@@ -1,16 +1,52 @@
 #include "pch.h"
 #include "Engine.h"
 #include <iostream>
-Engine::Engine()
-{
-}
+#include "GameWorld.h"
+#include "RenderSystem.h"
 
-void Engine::Initialize()
+namespace Engine
 {
-	std::cout << "Движок инициализирован." << std::endl;
-}
+	Engine* Engine::Instance()
+	{
+		static Engine instance;
+		return &instance;
+	}
 
-void Engine::Run()
-{
-	std::cout << "Движок запущен!" << std::endl;
+	Engine::Engine()
+	{
+		unsigned int seed = (unsigned int)time(nullptr);
+		srand(seed);
+	}
+
+	void Engine::Run()
+	{
+		sf::Clock gameClock;
+		sf::Event event;
+
+		while (RenderSystem::Instance()->GetMainWindow().isOpen())
+		{
+			sf::Time dt = gameClock.restart();
+			float deltaTime = dt.asSeconds();
+
+			while (RenderSystem::Instance()->GetMainWindow().pollEvent(event))
+			{
+				if (event.type == sf::Event::Closed)
+				{
+					RenderSystem::Instance()->GetMainWindow().close();
+				}
+			}
+
+			if (!RenderSystem::Instance()->GetMainWindow().isOpen())
+			{
+				break;
+			}
+			RenderSystem::Instance()->GetMainWindow().clear();
+
+			GameWorld::Instance()->Update(deltaTime);
+			GameWorld::Instance()->Render();
+			GameWorld::Instance()->LateUpdate();
+
+			RenderSystem::Instance()->GetMainWindow().display();
+		}
+	}
 }
