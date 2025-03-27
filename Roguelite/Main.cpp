@@ -8,7 +8,7 @@ int main()
 {
 	Engine::RenderSystem::Instance()->SetMainWindow(new sf::RenderWindow(sf::VideoMode(1280, 720), "RogueLite"));
 	
-	Engine::ResourceSystem::Instance()->LoadTexture("Ball", "Resources/Textures/ball.png");
+	Engine::ResourceSystem::Instance()->LoadTexture("Ball", "Resourses/Textures/ball.png");
 
 	auto developerLevel = std::make_shared<RogueLite::DeveloperLevel>();
 	developerLevel->Start();

@@ -24,7 +24,7 @@ namespace Engine
 				std::cout << "T must be derived from Component." << std::endl;
 				return nullptr;
 			}
-			if constexpr (!std::is_same<T, TransformComponent>::value)
+			if constexpr (std::is_same<T, TransformComponent>::value)
 			{
 				if (GetComponent<TransformComponent>() != nullptr)
 				{
