@@ -4,20 +4,16 @@
 #include "ResourceSystem.h"
 #include "DeveloperLevel.h"
 
-
-namespace RogueLite
+int main()
 {
-	int main()
-	{
-		Engine::RenderSystem::Instance()->SetMainWindow(new sf::RenderWindow(sf::VideoMode(1280, 720), "RogueLite"));
-		
-		Engine::ResourceSystem::Instance()->LoadTexture("Ball", "Resources/Textures/ball.png");
+	Engine::RenderSystem::Instance()->SetMainWindow(new sf::RenderWindow(sf::VideoMode(1280, 720), "RogueLite"));
+	
+	Engine::ResourceSystem::Instance()->LoadTexture("Ball", "Resources/Textures/ball.png");
 
-		auto developerLevel = std::make_shared<DeveloperLevel>();
-		developerLevel->Start();
+	auto developerLevel = std::make_shared<RogueLite::DeveloperLevel>();
+	developerLevel->Start();
 
-		Engine::Engine::Instance()->Run();
-		
-		return 0;
-	}
+	Engine::Engine::Instance()->Run();
+	
+	return 0;
 }
