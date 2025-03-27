@@ -7,7 +7,6 @@
 
 namespace RogueLite
 {
-
 	int main()
 	{
 		Engine::RenderSystem::Instance()->SetMainWindow(new sf::RenderWindow(sf::VideoMode(1280, 720), "RogueLite"));

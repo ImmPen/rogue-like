@@ -129,7 +129,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /d "$(TargetPath)" "$(SolutionDir)RogueLite\"</Command>
+      <Command>xcopy /y /d "$(TargetPath)" "$(SolutionDir)RogueLite\$(Platform)\$(Configuration)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -184,6 +184,7 @@
     </ClCompile>
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="ResourceSystem.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteRendererComponent.cpp" />
     <ClCompile Include="TransformComponent.cpp" />

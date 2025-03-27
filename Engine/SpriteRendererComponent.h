@@ -6,7 +6,7 @@
 
 namespace Engine
 {
-	class SpriteRendererComponent : public Component
+	class ENGINE_API SpriteRendererComponent : public Component
 	{
 	public:
 		SpriteRendererComponent(GameObject* gameObject);

@@ -5,7 +5,7 @@
 
 namespace Engine
 {
-	class CameraComponent : public Component
+	class ENGINE_API CameraComponent : public Component
 	{
 	public:
 		CameraComponent(GameObject* gameObject);

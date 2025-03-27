@@ -7,7 +7,7 @@
 
 namespace Engine
 {
-    class TransformComponent :
+    class ENGINE_API TransformComponent :
         public Component
     {
     public:

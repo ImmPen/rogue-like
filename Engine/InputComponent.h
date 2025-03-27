@@ -3,7 +3,7 @@
 #include <SFML/Window.hpp>
 namespace Engine
 {
-    class InputComponent :
+    class ENGINE_API InputComponent :
         public Component
     {
     public:

@@ -3,7 +3,7 @@
 #include "GameObject.h"
 namespace Engine
 {
-	class GameWorld
+	class ENGINE_API GameWorld
 	{
 	public:
 		static GameWorld* Instance();
@@ -16,8 +16,8 @@ namespace Engine
 		void DestroyGameObject(GameObject* gameObject);
 		void Clear();
 	private:
-		GameWorld();
-		~GameWorld();
+		GameWorld() {}
+		~GameWorld() {}
 
 		GameWorld(GameWorld const&) = delete;
 		GameWorld& operator= (GameWorld const&) = delete;

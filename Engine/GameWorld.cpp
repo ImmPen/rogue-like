@@ -53,12 +53,6 @@ namespace Engine
 		}
 	}
 
-	GameWorld::~GameWorld()
-	{
-		gameObjects.clear();
-		markedToDestroyGameObjects.clear();
-	}
-
 	void GameWorld::DestroyGameObjectImmedeately(GameObject* gameObject)
 	{
 		gameObjects.erase(

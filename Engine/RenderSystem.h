@@ -1,8 +1,16 @@
 #pragma once
+
+#ifdef ENGINE_EXPORTS
+#define ENGINE_API __declspec(dllexport)
+#else
+#define ENGINE_API __declspec(dllimport)
+#endif
+
 #include <SFML/Graphics.hpp>
+
 namespace Engine
 {
-	class RenderSystem
+	class ENGINE_API RenderSystem
 	{
 	public:
 		static RenderSystem* Instance();

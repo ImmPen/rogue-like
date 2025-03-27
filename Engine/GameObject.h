@@ -7,7 +7,7 @@ namespace Engine
 {
 	class TransformComponent;
 
-	class GameObject
+	class ENGINE_API GameObject
 	{
 	public:
 		GameObject();

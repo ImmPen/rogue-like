@@ -1,10 +1,16 @@
 #pragma once
+#ifdef ENGINE_EXPORTS
+#define ENGINE_API __declspec(dllexport)
+#else
+#define ENGINE_API __declspec(dllimport)
+#endif
+
 
 #include "SFML/Graphics.hpp"
 
 namespace Engine
 {
-	class Engine
+	class ENGINE_API Engine
 	{
 	public:
 		Engine(const Engine& app) = delete;
