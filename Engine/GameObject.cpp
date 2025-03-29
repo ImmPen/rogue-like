@@ -5,6 +5,13 @@ namespace Engine
 {
 	GameObject::GameObject()
 	{
+		name = "Game Object";
+		AddComponent<TransformComponent>();
+	}
+
+	GameObject::GameObject(std::string newName)
+	{
+		name = newName;
 		AddComponent<TransformComponent>();
 	}
 
@@ -15,6 +22,7 @@ namespace Engine
 			delete component;
 		}
 		components.clear();
+		children.clear();
 	}
 
 	void GameObject::Update(float deltaTime)
@@ -31,5 +39,35 @@ namespace Engine
 		{
 			component->Render();
 		}
+	}
+	std::string GameObject::GetName() const
+	{
+		return name;
+	}
+	void GameObject::Print(int depth) const
+	{
+		std::cout << std::string(depth * 2, ' ') << GetName() << std::endl;
+		for (auto& component : components)
+		{
+			std::cout << std::string(depth * 2, ' ') << "::" << component << std::endl;
+
+			for (GameObject* child : children)
+			{
+				child->Print(depth + 1);
+			}
+		}
+	}
+
+	void GameObject::AddChild(GameObject* child)
+	{
+		children.push_back(child);
+	}
+	void GameObject::RemoveChild(GameObject* child)
+	{
+		children.erase(std::remove_if(children.begin(), children.end(),
+			[child](GameObject* obj)
+			{
+				return obj == child;
+			}), children.end());
 	}
 }

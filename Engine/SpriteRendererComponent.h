@@ -23,6 +23,7 @@ namespace Engine
 		void FlipY(bool flip);
 
 	private:
+		Vector2Df scale;
 		sf::Sprite* sprite;
 		TransformComponent* transform;
 
