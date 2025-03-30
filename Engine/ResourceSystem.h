@@ -17,6 +17,7 @@ namespace Engine
 	{
 	public:
 		static ResourceSystem* Instance();
+
 		void LoadTexture(const std::string& name, std::string sourcePath, bool isSmooth = true);
 		const sf::Texture* GetTextureShared(const std::string& name) const;
 		sf::Texture* GetTextureCopy(const std::string& name) const;
@@ -29,11 +30,10 @@ namespace Engine
 		int GetTextureMapElementsCount(const std::string& name) const;
 		void DeleteSharedTextureMap(const std::string& name);
 
-		void Clear();
 
+
+		void Clear();
 	private:
-		std::map<std::string, sf::Texture*> textures;
-		std::map<std::string, std::vector<sf::Texture*>> textureMaps;
 
 		ResourceSystem() = default;
 		~ResourceSystem() = default;
@@ -43,5 +43,13 @@ namespace Engine
 
 		void DeleteAllTextures();
 		void DeleteAllTextureMaps();
+	
+	private:
+
+		std::map<std::string, sf::Texture*> textures;
+		std::map<std::string, std::vector<sf::Texture*>> textureMaps;
+
+		std::map<std::string, sf::Sound*> sounds;
+		sf::Music music;
 	};
 }

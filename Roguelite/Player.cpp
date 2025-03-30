@@ -16,6 +16,10 @@ namespace RogueLite
         playerCamera->SetBaseResolution(1280, 720);
 
         auto playerInput = gameObject->AddComponent<Engine::InputComponent>();
+
+        auto playerCollider = gameObject->AddComponent<Engine::SpriteColliderComponent>();
+
+        auto playerRigidbodyComponent = gameObject->AddComponent<Engine::RigidbodyComponent>();
     }
 
     Engine::GameObject* Player::GetGameObject()

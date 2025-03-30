@@ -6,6 +6,7 @@
 #include "RenderSystem.h"
 #include "InputComponent.h"
 #include "GameObject.h"
+#include "SpriteColliderComponent.h"
 
 namespace RogueLite
 {
