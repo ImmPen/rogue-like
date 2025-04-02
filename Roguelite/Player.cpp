@@ -1,5 +1,4 @@
 #include "Player.h"
-#include <ResourceSystem.h>
 
 namespace RogueLite
 {
@@ -20,6 +19,9 @@ namespace RogueLite
         auto playerCollider = gameObject->AddComponent<Engine::SpriteColliderComponent>();
 
         auto playerRigidbodyComponent = gameObject->AddComponent<Engine::RigidbodyComponent>();
+
+        auto playerMovement = gameObject->AddComponent<Engine::MovementComponent>();
+        playerMovement->SetSpeed(2000);
     }
 
     Engine::GameObject* Player::GetGameObject()

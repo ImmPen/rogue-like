@@ -8,6 +8,7 @@ namespace Engine
 	{
 
 	}
+
 	void InputComponent::Update(float deltaTime)
 	{
 		verticalAxis = 0.f;
@@ -31,13 +32,16 @@ namespace Engine
 			horizontalAxis -= 1.0f;
 		}
 	}
+
 	void InputComponent::Render()
 	{
 	}
+
 	float InputComponent::GetHorizontalAxis() const
 	{
 		return horizontalAxis;
 	}
+
 	float InputComponent::GetVertcalAxis() const
 	{
 		return verticalAxis;
