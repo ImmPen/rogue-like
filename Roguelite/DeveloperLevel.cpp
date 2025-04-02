@@ -5,6 +5,7 @@ namespace RogueLite
 	void DeveloperLevel::Start()
 	{
 		player = std::make_shared<Player>();
+		music = std::make_shared<BackgroundMusic>();
 	}
 
 	void DeveloperLevel::Restart()

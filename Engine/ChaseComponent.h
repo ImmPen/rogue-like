@@ -3,7 +3,7 @@
 
 namespace Engine
 {
-    class ENGINE_API FollowComponent :
+    class ENGINE_API ChaseComponent :
         public Component
     {
 

@@ -3,6 +3,7 @@
 #include <array>
 #include "Scene.h"
 #include "Player.h"
+#include "BackgroundMusic.h"
 
 namespace RogueLite
 {
@@ -15,5 +16,6 @@ namespace RogueLite
 		void Stop() override;
 	private:
 		std::shared_ptr<Player> player;
+		std::shared_ptr<BackgroundMusic> music;
 	};
 }

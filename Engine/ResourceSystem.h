@@ -30,7 +30,9 @@ namespace Engine
 		int GetTextureMapElementsCount(const std::string& name) const;
 		void DeleteSharedTextureMap(const std::string& name);
 
-
+		void LoadSoundBuffer(const std::string& name, std::string sourcePath);
+		const sf::SoundBuffer* GetSoundBuffer(const std::string& name) const;
+		void DeleteSharedSoundBuffer(const std::string& name);
 
 		void Clear();
 	private:
@@ -43,13 +45,12 @@ namespace Engine
 
 		void DeleteAllTextures();
 		void DeleteAllTextureMaps();
-	
+		void DeleteAllSoundBuffers();
+
 	private:
 
 		std::map<std::string, sf::Texture*> textures;
 		std::map<std::string, std::vector<sf::Texture*>> textureMaps;
-
-		std::map<std::string, sf::Sound*> sounds;
-		sf::Music music;
+		std::map<std::string, sf::SoundBuffer*> soundBuffers;
 	};
 }

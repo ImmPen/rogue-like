@@ -58,14 +58,14 @@ namespace Engine
 			auto textureSize = textureMap.getSize();
 			int loadedElements = 0;
 
-			for (int y = 0; y <= textureSize.y - elementPixelSize.y; y += elementPixelSize.y)
+			for (unsigned int y = 0; y <= textureSize.y - elementPixelSize.y; y += elementPixelSize.y)
 			{
 				if (loadedElements == totalElements)
 				{
 					break;
 				}
 
-				for (int x = 0; x <= textureSize.x - elementPixelSize.x; x += elementPixelSize.x)
+				for (unsigned int x = 0; x <= textureSize.x - elementPixelSize.x; x += elementPixelSize.x)
 				{
 					if (loadedElements == totalElements)
 					{
@@ -103,7 +103,7 @@ namespace Engine
 	{
 		auto textureMap = textureMaps.find(name);
 		auto textures = textureMap->second;
-		return textures.size();
+		return (int)textures.size();
 	}
 
 	void ResourceSystem::DeleteSharedTextureMap(const std::string& name)
@@ -119,10 +119,38 @@ namespace Engine
 		textureMaps.erase(textureMap);
 	}
 
+	void ResourceSystem::LoadSoundBuffer(const std::string& name, std::string sourcePath)
+	{
+		if (soundBuffers.find(name) != soundBuffers.end())
+		{
+			return;
+		}
+		sf::SoundBuffer* newBuffer = new sf::SoundBuffer;
+		if (newBuffer->loadFromFile(sourcePath))
+		{
+			soundBuffers.emplace(name, newBuffer);
+		}
+	}
+
+	const sf::SoundBuffer* ResourceSystem::GetSoundBuffer(const std::string& name) const
+	{
+		return soundBuffers.find(name)->second;
+	}
+
+	void ResourceSystem::DeleteSharedSoundBuffer(const std::string& name)
+	{
+		auto bufferPair = soundBuffers.find(name);
+
+		sf::SoundBuffer* deletingBuffer = bufferPair->second;
+		soundBuffers.erase(bufferPair);
+		delete deletingBuffer;
+	}
+
 	void ResourceSystem::Clear()
 	{
 		DeleteAllTextures();
 		DeleteAllTextureMaps();
+		DeleteAllSoundBuffers();
 	}
 
 	void ResourceSystem::DeleteAllTextures()
@@ -152,6 +180,21 @@ namespace Engine
 		for (const auto& key : keysToDelete)
 		{
 			DeleteSharedTextureMap(key);
+		}
+	}
+
+	void ResourceSystem::DeleteAllSoundBuffers()
+	{
+		std::vector<std::string> keysToDelete;
+
+		for (const auto& soundBufferPair : textureMaps)
+		{
+			keysToDelete.push_back(soundBufferPair.first);
+		}
+
+		for (const auto& key : keysToDelete)
+		{
+			DeleteSharedSoundBuffer(key);
 		}
 	}
 }
