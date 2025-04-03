@@ -23,5 +23,6 @@ namespace Engine
         TransformComponent* transform;
 
         Vector2Df direction = { 0.f, 0.f };
+        float seekDistance = 1000.f;
     };
 }

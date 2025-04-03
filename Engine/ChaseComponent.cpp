@@ -17,7 +17,8 @@ namespace Engine
 	void ChaseComponent::Update(float deltaTime)
 	{
 		direction = chasedTransform->GetWorldPosition() - transform->GetWorldPosition();
-		direction = direction * (1 / direction.GetLength());
+		float distance = direction.GetLength();
+		direction = distance < seekDistance ? direction * (1 / distance) : Vector2Df{0.f, 0.f};
 	}
 
 	void ChaseComponent::Render()
