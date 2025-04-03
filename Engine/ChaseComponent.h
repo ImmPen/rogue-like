@@ -18,6 +18,8 @@ namespace Engine
 
         void SetChasedObject(GameObject* chasedObject);
         Vector2Df GetDirection();
+
+        void SetSeekDistance(float newDistance);
     private:
         TransformComponent* chasedTransform;
         TransformComponent* transform;

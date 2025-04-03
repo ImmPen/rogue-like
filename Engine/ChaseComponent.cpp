@@ -35,4 +35,9 @@ namespace Engine
 		return direction;
 	}
 
+	void ChaseComponent::SetSeekDistance(float newDistance)
+	{
+		seekDistance = newDistance;
+	}
+
 }
