@@ -5,6 +5,8 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "BackgroundMusic.h"
+#include "Wall.h"
+#include "Floor.h"
 
 namespace RogueLite
 {
@@ -19,5 +21,7 @@ namespace RogueLite
 		std::shared_ptr<Player> player;
 		std::shared_ptr<BackgroundMusic> music;
 		std::shared_ptr<Enemy> enemy;
+		std::vector<std::shared_ptr<Wall>> walls;
+		std::vector<std::shared_ptr<Floor>> floor;
 	};
 }

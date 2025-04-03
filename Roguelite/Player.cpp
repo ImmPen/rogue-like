@@ -21,7 +21,7 @@ namespace RogueLite
         auto playerRigidbodyComponent = gameObject->AddComponent<Engine::RigidbodyComponent>();
 
         auto playerMovement = gameObject->AddComponent<Engine::MovementComponent>();
-        playerMovement->SetSpeed(2000);
+        playerMovement->SetSpeed(200);
     }
 
     Engine::GameObject* Player::GetGameObject()

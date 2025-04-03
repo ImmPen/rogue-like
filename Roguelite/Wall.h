@@ -7,7 +7,7 @@
 #include "SpriteColliderComponent.h"
 #include "ResourceSystem.h"
 
-namespace Roguelite
+namespace RogueLite
 {
 	class Wall
 	{
