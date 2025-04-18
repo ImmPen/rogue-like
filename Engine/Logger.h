@@ -8,6 +8,12 @@
 #include <unordered_map>
 #include <memory>
 
+#ifdef ENGINE_EXPORTS
+#define ENGINE_API __declspec(dllexport)
+#else
+#define ENGINE_API __declspec(dllimport)
+#endif
+
 namespace Engine
 {
 	enum class LogLevel
@@ -17,7 +23,7 @@ namespace Engine
 		T_ERROR
 	};
 
-	class LogSink
+	class ENGINE_API LogSink
 	{
 	public:
 		virtual void Log(LogLevel level, std::string message) = 0;
@@ -43,7 +49,7 @@ namespace Engine
 		}
 	};
 
-	class ConsoleSink : public LogSink
+	class ENGINE_API ConsoleSink : public LogSink
 	{
 		void Log(LogLevel level, std::string message) override
 		{
@@ -51,12 +57,16 @@ namespace Engine
 		}
 	};
 
-	class FileSink : public LogSink
+	class ENGINE_API FileSink : public LogSink
 	{
 	public:
 		FileSink(std::string filePath)
 		{
 			file.open(filePath, std::ios::app);
+			if (!file.is_open())
+			{
+				std::cout << "What?" << std::endl;
+			}
 		}
 		~FileSink()
 		{
@@ -71,7 +81,7 @@ namespace Engine
 		std::fstream file;
 	};
 
-	class Logger
+	class ENGINE_API Logger
 	{
 	public:
 		void AddSink(std::shared_ptr<LogSink> sink)
@@ -95,7 +105,7 @@ namespace Engine
 		std::vector<std::shared_ptr<LogSink>> sinks;
 	};
 
-	class LoggerRegistry
+	class ENGINE_API LoggerRegistry
 	{
 	public:
 		void SetDefaultLogger(std::shared_ptr<Logger> logger)
@@ -119,13 +129,19 @@ namespace Engine
 
 			return defaultLogger;
 		}
+
+		void RegisterLogger(const std::string& name, std::shared_ptr<Logger> logger)
+		{
+			std::lock_guard<std::mutex> lock(registryMutex);
+			loggers[name] = logger;
+		}
 	private:
 		std::shared_ptr<Logger> defaultLogger;
 		std::unordered_map<std::string, std::shared_ptr<Logger>> loggers;
 		std::mutex registryMutex;
 	};
-
-#define LOG_INFO(message) LoggerRegistry::GetInstance().GetLogger("global")->Info(message)
-#define LOG_WARN(message) LoggerRegistry::GetInstance().GetLogger("global")->Warn(message)
-#define LOG_ERROR(message) LoggerRegistry::GetInstance().GetLogger("global")->Error(message)
 }
+
+#define LOG_INFO(message) Engine::LoggerRegistry::GetInstance().GetLogger("global")->Info(message)
+#define LOG_WARN(message) Engine::LoggerRegistry::GetInstance().GetLogger("global")->Warn(message)
+#define LOG_ERROR(message) Engine::LoggerRegistry::GetInstance().GetLogger("global")->Error(message)

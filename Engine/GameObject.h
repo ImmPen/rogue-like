@@ -1,5 +1,6 @@
 #pragma once
 #include "TransformComponent.h"
+#include "Logger.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -28,20 +29,21 @@ namespace Engine
 		{
 			if constexpr (!std::is_base_of<Component, T>::value)
 			{
-				std::cout << "T must be derived from Component." << std::endl;
+
+				LOG_WARN("T must be derived from Component.");
 				return nullptr;
 			}
 			if constexpr (std::is_same<T, TransformComponent>::value)
 			{
 				if (GetComponent<TransformComponent>() != nullptr)
 				{
-					std::cout << "Can't add Transform, because it will break the engine loop" << std::endl;
+					LOG_WARN("Can't add Transform, because it will break the engine loop");
 					return nullptr;
 				}
 			}
 			T* newComponent = new T(this);
 			components.push_back(newComponent);
-			std::cout << "Add new component: " << newComponent << std::endl;
+			//LOG_INFO("Add new component: " + std::to_string(newComponent));
 			return newComponent;
 		}
 
@@ -52,7 +54,7 @@ namespace Engine
 					components.begin(), components.end(),
 					[component](Component* obj) {return obj == component; }), components.end());
 			delete component;
-			std::cout << "Delete component" << std::endl;
+			//LOG_INFO("Delete component");
 		}
 
 		template<typename T>

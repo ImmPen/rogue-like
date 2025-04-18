@@ -7,7 +7,7 @@ namespace RogueLite
 		gameObject = Engine::GameWorld::Instance()->CreateGameObject();
 
 		auto enemyTransform = gameObject->GetComponent<Engine::TransformComponent>();
-		enemyTransform->SetWorldPosition(1000, 1000);
+		enemyTransform->SetWorldPosition(500, 500);
 
 		auto enemyRenderer = gameObject->AddComponent<Engine::SpriteRendererComponent>();
 		enemyRenderer->SetTexture(*Engine::ResourceSystem::Instance()->GetTextureShared("Ball"));
@@ -16,6 +16,7 @@ namespace RogueLite
 
 		auto enemyChaser = gameObject->AddComponent<Engine::ChaseComponent>();
 		enemyChaser->SetChasedObject(player->GetGameObject());
+		enemyChaser->SetSeekDistance(500);
 		
 		auto enemyCollider = gameObject->AddComponent<Engine::SpriteColliderComponent>();
 

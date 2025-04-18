@@ -7,6 +7,7 @@
 #include "BackgroundMusic.h"
 #include "Wall.h"
 #include "Floor.h"
+#include "Logger.h"
 
 namespace RogueLite
 {

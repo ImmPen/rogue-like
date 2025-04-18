@@ -4,6 +4,7 @@
 #include <iostream>
 #include "ColliderComponent.h"
 #include "RigidbodyComponent.h"
+#include "Logger.h"
 
 namespace Engine
 {

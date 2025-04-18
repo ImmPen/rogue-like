@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "PhysicsSystem.h"
 
+
 namespace Engine
 {
     PhysicsSystem* Engine::PhysicsSystem::Instance()
@@ -56,12 +57,12 @@ namespace Engine
                             if (intersectionPosition.y > aPostion.y)
                             {
                                 aTransform->MoveBy({ 0, -intersectionHeight });
-                                std::cout << "Top collision" << std::endl;
+                                LOG_INFO("Top collision");
                             }
                             else
                             {
                                 aTransform->MoveBy({ 0, intersectionHeight });
-                                std::cout << "Down Collision" << std::endl;
+                                LOG_INFO("Down Collision");
                             }
                         }
                         else
@@ -69,12 +70,12 @@ namespace Engine
                             if (intersectionPosition.x > aPostion.x)
                             {
                                 aTransform->MoveBy({ -intersectionWidth, 0 });
-                                std::cout << "Right collision" << std::endl;
+                                LOG_INFO("Right collision");
                             }
                             else
                             {
                                 aTransform->MoveBy({ intersectionWidth, 0 });
-                                std::cout << "Left Collision" << std::endl;
+                                LOG_INFO("Left Collision");
                             }
                         }
 
@@ -107,13 +108,13 @@ namespace Engine
 
     void PhysicsSystem::Subscribe(ColliderComponent* collider)
     {
-        std::cout << "Subscribe" << collider << std::endl;
+        //LOG_INFO("Subscribe" + std::to_string(collider));
         colliders.push_back(collider);
     }
 
     void PhysicsSystem::Unsubscribe(ColliderComponent* collider)
     {
-        std::cout << "Unsubscribe" << collider << std::endl;
+        //LOG_INFO("Unsubscribe" + std::to_string(collider));
         colliders.erase(std::remove_if(colliders.begin(), colliders.end(),
             [collider](ColliderComponent* obj) { return obj == collider; }), colliders.end());
 
