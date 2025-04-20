@@ -21,7 +21,11 @@ namespace Engine
 			newTexture->setSmooth(isSmooth);
 			textures.emplace(name, newTexture);
 		}
-
+		else
+		{
+			LOG_ERROR("Texture not found: " + sourcePath);
+			throw TextureNotFound(sourcePath.c_str());
+		}
 	}
 
 	const sf::Texture* ResourceSystem::GetTextureShared(const std::string& name) const
@@ -83,6 +87,11 @@ namespace Engine
 			}
 			textureMaps.emplace(name, *textureMapElements);
 		}
+		else
+		{
+			LOG_ERROR("Texture map not found: " + sourcePath);
+			throw TextureMapNotFound(sourcePath.c_str());
+		}
 	}
 
 	const sf::Texture* ResourceSystem::GetTextureMapElementShared(const std::string& name, int elementIndex) const
@@ -129,6 +138,11 @@ namespace Engine
 		if (newBuffer->loadFromFile(sourcePath))
 		{
 			soundBuffers.emplace(name, newBuffer);
+		}
+		else
+		{
+			LOG_ERROR("Sound buffer not found: " + sourcePath);
+			throw SoundBufferNotFound(sourcePath.c_str());
 		}
 	}
 

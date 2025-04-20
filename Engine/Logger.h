@@ -63,10 +63,6 @@ namespace Engine
 		FileSink(std::string filePath)
 		{
 			file.open(filePath, std::ios::app);
-			if (!file.is_open())
-			{
-				std::cout << "What?" << std::endl;
-			}
 		}
 		~FileSink()
 		{

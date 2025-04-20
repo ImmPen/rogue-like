@@ -18,18 +18,47 @@ namespace Engine
 			return message.c_str();
 		}
 		virtual ~Exception() = default;
-	private:
+	protected:
 		std::string message;
 	};
 
-	class BadResource : public Exception
+	class ResourceNotFound : public Exception
 	{
 	public:
-		BadResource(const char* msg)
+		ResourceNotFound(const char* msg)
 			: Exception(msg)
 		{
 
 		}
+	};
+	
+	class TextureNotFound : public ResourceNotFound
+	{
+	public:
+		TextureNotFound(const char* msg)
+			: ResourceNotFound(msg)
+		{
 
+		}
+	};
+
+	class TextureMapNotFound : public ResourceNotFound
+	{
+	public:
+		TextureMapNotFound(const char* msg)
+			: ResourceNotFound(msg)
+		{
+
+		}
+	};
+	
+	class SoundBufferNotFound : public ResourceNotFound
+	{
+	public:
+		SoundBufferNotFound(const char* msg)
+			: ResourceNotFound(msg)
+		{
+
+		}
 	};
 }

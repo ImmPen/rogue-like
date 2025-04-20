@@ -10,6 +10,8 @@
 #include <map>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "Exceptions.h"
+#include "Logger.h"
 
 namespace Engine
 {
